@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'color.dart';
+import 'text_styles.dart';
 
 ThemeData buildMentorTheme(theme) {
   final ThemeData base = theme == 1 ? ThemeData.light() : ThemeData.dark();
@@ -7,6 +8,7 @@ ThemeData buildMentorTheme(theme) {
   final accentColorHolder = kMentorGreen;
   final primaryColorHolder = kMentorGreen;
   final buttonColorHolder = kMentorGreen;
+
   final scaffoldBackgroundColorHolder = kMentorGreenLight;
 
   return base.copyWith(
