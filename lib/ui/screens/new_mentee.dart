@@ -60,7 +60,7 @@ class _NewMenteeState extends State<NewMentee> {
       } else {
         await provider.update(mentee);
       }
-      Navigator.of(context).pop();
+      Navigator.of(context).pushNamed("/mentee");
     }
   }
 
