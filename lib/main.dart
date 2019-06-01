@@ -1,60 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:mentor4food/ui/screens/mentor_profile.dart';
+import 'package:mentor4food/ui/shared/color.dart';
 import 'package:mentor4food/ui/shared/theme.dart';
+import 'package:splashscreen/splashscreen.dart';
 
-
-void main() => runApp(MyApp());
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: buildMentorTheme(1),
-      home: MyHomePage(),
-    );
-  }
+void main() {
+  runApp(new MaterialApp(
+    home: new MyApp(),
+    theme: buildMentorTheme(1),
+  ));
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key}) : super(key: key);
-
+class MyApp extends StatefulWidget {
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _MyAppState createState() => new _MyAppState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Mentor Profile"),
+    return SplashScreen(
+      seconds: 10,
+      navigateAfterSeconds: MentorProfile(),
+      title: Text(
+        'MENTOR FOR FOOD',
+        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
       ),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              CircleAvatar(
-                backgroundImage: NetworkImage(
-                    'http://clipart-library.com/images/BTaroLj5c.png'),
-                radius: 70,
-              ),
-              Column(
-                children: <Widget>[
-                  Text("Name: Julian Sanders"),
-                  Text("Reputations: *******"),
-                  Text("Food Preference: *******"),
-                  Text("Date Available: *******"),
-                  Text("Technology: *******"),
-
-                ],
-              ),
-            ],
-          ),
-        ),
-      ),
+      image: Image.asset(
+          'assets/giphy.gif'),
+      backgroundColor: kMentorGreenLight,
+      styleTextUnderTheLoader: new TextStyle(),
+      photoSize: 100.0,
+      loaderColor: kMentorGreen,
     );
   }
 }
