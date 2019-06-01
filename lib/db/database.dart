@@ -6,6 +6,7 @@ import 'package:mentor4food/model/mentor.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:mentor4food/model/mentee.dart';
 
 class DatabaseHelper {
   DatabaseHelper._internal();
@@ -26,6 +27,21 @@ class DatabaseHelper {
       Mentor.columnDate +
       ' TEXT,' +
       Mentor.columnReputation +
+      ' TEXT )';
+  final String _createTableMentee = 'CREATE TABLE ' +
+      Mentee.tableName +
+      '(' +
+      Mentee.columnId +
+      ' INTEGER PRIMARY KEY AUTOINCREMENT,' +
+      Mentee.columnTechnology +
+      ' TEXT,' +
+      Mentee.columnProblem +
+      ' TEXT,' +
+      Mentee.columnDate +
+      ' TEXT,' +
+      Mentee.columnName +
+      ' TEXT,' +
+      Mentee.columnMobile +
       ' TEXT )';
   // final String _createCategoryTable = 'CREATE TABLE ' +
   //     Category.tableName +
@@ -68,7 +84,7 @@ class DatabaseHelper {
         onCreate: (Database db, int version) async {
       //When creating the db, create the table
       await db.execute(_createTableMentor);
-      // await db.execute(_createCategoryTable); // TODO: pending
+      await db.execute(_createTableMentee);
       // [
       //   Category.deFault,
       //   Category.personal,
