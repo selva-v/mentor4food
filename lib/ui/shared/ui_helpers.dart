@@ -10,7 +10,7 @@ class UIHelper {
   // Vertical spacing constants. Adjust to your liking.
   static const double _HorizontalSpaceSmall = 10.0;
   static const double _HorizontalSpaceMedium = 20.0;
-  static const double HorizontalSpaceLarge = 60.0;
+  static const double _HorizontalSpaceLarge = 60.0;
 
   /// Returns a vertical space with height set to [_VerticalSpaceSmall]
   static Widget verticalSpaceSmall() {
@@ -44,7 +44,7 @@ class UIHelper {
 
   /// Returns a vertical space with height set to [HorizontalSpaceLarge]
   static Widget horizontalSpaceLarge() {
-    return horizontalSpace(HorizontalSpaceLarge);
+    return horizontalSpace(_HorizontalSpaceLarge);
   }
 
   /// Returns a vertical space equal to the [width] supplied

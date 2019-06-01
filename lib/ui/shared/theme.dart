@@ -8,26 +8,26 @@ ThemeData buildMentorTheme(theme) {
   final accentColorHolder = kMentorGreen;
   final primaryColorHolder = kMentorGreen;
   final buttonColorHolder = kMentorGreen;
-  final scaffoldBackgroundColorHolder = kMentorBackgroundWhite;
-  // final iconColorHolder = kMentorBrown900;
+
+  final scaffoldBackgroundColorHolder = kMentorGreenLight;
 
   return base.copyWith(
-    //Main colors
-    accentColor: accentColorHolder,
-    primaryColor: primaryColorHolder,
-    buttonColor: buttonColorHolder,
-    scaffoldBackgroundColor: scaffoldBackgroundColorHolder,
-    cardColor: kMentorBackgroundWhite,
-    textTheme: buildMentorTextTheme(),
-  );
+      //Main colors
+      accentColor: accentColorHolder,
+      primaryColor: primaryColorHolder,
+      buttonColor: buttonColorHolder,
+      scaffoldBackgroundColor: scaffoldBackgroundColorHolder,
+      cardColor: kMentorBackgroundWhite,
+      textTheme: buildMentorTextTheme(),
+      );
 }
 
 TextTheme buildMentorTextTheme() {
   return TextTheme(
-    headline: TextStyle(
-        fontSize: 30.0, fontWeight: FontWeight.bold, color: Colors.black),
-    title: TextStyle(fontSize: 26.0, color: Colors.black),
-    body1: TextStyle(fontSize: 18.0, color: Colors.black),
+    headline: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold, color: Colors.black),
+    title: TextStyle(fontSize: 36.0, fontStyle: FontStyle.italic, color: Colors.black),
+    body1: TextStyle(fontSize: 14.0, fontFamily: 'Hind', color: Colors.black),
+    display1: TextStyle(fontSize: 14.0, fontFamily: 'Hind', color: Colors.black),
   );
 }
 
