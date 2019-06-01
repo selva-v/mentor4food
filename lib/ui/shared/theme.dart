@@ -5,35 +5,28 @@ ThemeData buildMentorTheme(theme) {
   final ThemeData base = theme == 1 ? ThemeData.light() : ThemeData.dark();
 
   final accentColorHolder = kMentorGreen;
-  final primaryColorHolder =kMentorGreen;
-  final buttonColorHolder =kMentorGreen;
-  final scaffoldBackgroundColorHolder = kMentorBackgroundWhite;
-  // final iconColorHolder = kMentorBrown900;
+  final primaryColorHolder = kMentorGreen;
+  final buttonColorHolder = kMentorGreen;
+  final scaffoldBackgroundColorHolder = kMentorGreenLight;
 
   return base.copyWith(
-    //Main colors
-    accentColor: accentColorHolder,
-    primaryColor: primaryColorHolder,
-    buttonColor: buttonColorHolder,
-    scaffoldBackgroundColor: scaffoldBackgroundColorHolder,
-    cardColor: kMentorBackgroundWhite,
-  );
+      //Main colors
+      accentColor: accentColorHolder,
+      primaryColor: primaryColorHolder,
+      buttonColor: buttonColorHolder,
+      scaffoldBackgroundColor: scaffoldBackgroundColorHolder,
+      cardColor: kMentorBackgroundWhite,
+      textTheme: buildMentorTextTheme(),
+      );
 }
 
-TextTheme buildMentorTextTheme(TextTheme base, theme) {
-  return base
-      .copyWith(
-        headline: base.headline.copyWith(
-          fontWeight: FontWeight.w500,
-        ),
-        title: base.title.copyWith(fontSize: 20.0),
-        caption: base.caption.copyWith(
-          fontWeight: FontWeight.w400,
-          fontSize: 14.0,
-        ),
-      )
-      .apply(
-          fontFamily: 'Rubik');
+TextTheme buildMentorTextTheme() {
+  return TextTheme(
+    headline: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold, color: Colors.black),
+    title: TextStyle(fontSize: 36.0, fontStyle: FontStyle.italic, color: Colors.black),
+    body1: TextStyle(fontSize: 14.0, fontFamily: 'Hind', color: Colors.black),
+    display1: TextStyle(fontSize: 14.0, fontFamily: 'Hind', color: Colors.black),
+  );
 }
 
 const kSendButtonTextStyle = TextStyle(
