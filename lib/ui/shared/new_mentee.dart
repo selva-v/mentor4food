@@ -19,13 +19,16 @@ class NewMentee extends StatefulWidget {
   }
 
   @override
-  _NewMenteeState createState() => new _NewMenteeState();
+  _NewMenteeState createState() => new _NewMenteeState(mentee: this.mentee);
 }
 
 class _NewMenteeState extends State<NewMentee> {
   final GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
   // List<Category> _categoryList = [];
   // Category _category;
+  Mentee mentee;
+
+  _NewMenteeState({this.mentee});
 
   AppBar _createAppBar() {
     return new AppBar(
@@ -37,6 +40,7 @@ class _NewMenteeState extends State<NewMentee> {
   IconButton _createSaveUpdateAction() {
     return new IconButton(
       onPressed: () {
+        print('test');
         _saveMentee();
       },
       icon: const Icon(Icons.save),
@@ -44,26 +48,30 @@ class _NewMenteeState extends State<NewMentee> {
   }
 
   _saveMentee() async {
+
+    print('saveMentee: ${mentee}');
     if (_formKey.currentState.validate()) {
       _formKey.currentState.save();
       MenteeProvider provider = new MenteeProvider();
       // widget.mentee.categoryId = _category.id;
+//      print(widget.mentee);
       if (!_isExistRecord()) {
-        await provider.insert(widget.mentee);
+        await provider.insert(mentee);
       } else {
-        await provider.update(widget.mentee);
+        await provider.update(mentee);
       }
       Navigator.of(context).pop();
     }
   }
 
   bool _isExistRecord() {
-    return widget.mentee.id == null ? false : true;
+    return mentee.id == null ? false : true;
   }
 
   @override
   void initState() {
     super.initState();
+    this.mentee = Mentee('id', 'name', 'technology', 'date', 'problem');
     // new CategoryProvider().getAllCategory().then((categories) {
     //   setState(() {
     //     if (_isExistRecord())
@@ -88,7 +96,7 @@ class _NewMenteeState extends State<NewMentee> {
     return new Scaffold(
       appBar: _createAppBar(),
       body: new Padding(
-          padding: new EdgeInsets.fromLTRB(12.0, 18.0, 12.0, 18.0),
+          padding: new EdgeInsets.fromLTRB(12.0, 0.0, 12.0, 5.0),
           child: new Form(
             onWillPop: _warnUserWithoutSaving,
             key: _formKey,
@@ -122,7 +130,7 @@ class _NewMenteeState extends State<NewMentee> {
             padding: new EdgeInsets.only(
                 left: 18.0, top: 8.0, bottom: 8.0, right: 18.0),
             child: new Text(
-              widget.mentee.date,
+              mentee != null ? mentee.date : DateTime.now().toString(),
               style: new TextStyle(
                   color: Theme.of(context).primaryColor, fontSize: 14.0),
             ),
@@ -173,22 +181,18 @@ class _NewMenteeState extends State<NewMentee> {
   // }
 
   _pickDateFromDatePicker() async {
-    DateTime dateTime = widget.formatter.parse(widget.mentee.date);
+//    DateTime dateTime = widget.formatter.parse(widget.mentee.date);
     DateTime dateTimePicked = await showDatePicker(
         context: context,
-        initialDate: dateTime,
-        firstDate: isBeforeToday(dateTime) ? dateTime : new DateTime.now(),
-        lastDate: dateTime.add(const Duration(days: 365)));
-
+        initialDate: new DateTime.now(),
+        firstDate: new DateTime(2018),
+        lastDate: new DateTime(2030)
+    );
     if (dateTimePicked != null) {
       setState(() {
-        widget.mentee.date = widget.formatter.format(dateTimePicked);
+        mentee.date = widget.formatter.format(dateTimePicked);
       });
     }
-  }
-
-  bool isBeforeToday(DateTime date) {
-    return date.isBefore(new DateTime.now());
   }
 
   Future<bool> _warnUserWithoutSaving() async {
@@ -230,7 +234,7 @@ class _NewMenteeState extends State<NewMentee> {
         hintText: 'My problem is xxxxxx',
         labelText: 'State your problem here ',
       ),
-      initialValue: widget.mentee.problem ?? '',
+      initialValue:  mentee != null ? mentee.problem : 'Default',
       keyboardType: TextInputType.text,
       validator: _validateNote,
       onSaved: _problemOnSave,
@@ -247,7 +251,7 @@ class _NewMenteeState extends State<NewMentee> {
         hintText: 'John',
         labelText: 'State your name here ',
       ),
-      initialValue: widget.mentee.name ?? '',
+      initialValue: mentee != null ? mentee.name : 'Default Name',
       keyboardType: TextInputType.text,
       validator: _validateNote,
       onSaved: _nameOnSave,
@@ -264,7 +268,7 @@ class _NewMenteeState extends State<NewMentee> {
         hintText: 'e.g. SQL',
         labelText: 'State your technology here ',
       ),
-      initialValue: widget.mentee.technology ?? '',
+      initialValue: mentee != null ? mentee.technology : 'Default Tech',
       keyboardType: TextInputType.text,
       validator: _validateNote,
       onSaved: _technologyOnSave,
@@ -276,14 +280,14 @@ class _NewMenteeState extends State<NewMentee> {
   }
 
   void _problemOnSave(String value) {
-    widget.mentee.problem = value;
+    mentee.problem = value;
   }
 
   void _technologyOnSave(String value) {
-    widget.mentee.technology = value;
+    mentee.technology = value;
   }
 
   void _nameOnSave(String value) {
-    widget.mentee.name = value;
+    mentee.name = value;
   }
 }

@@ -20,8 +20,8 @@ class Mentee {
   String mobile;
 
   Mentee(this.name, this.technology, this.date, this.problem, [this.mobile]);
-  Mentee.withId(this.id, this.name, this.technology, this.date, this.problem,
-      [this.mobile]);
+//  Mentee.withId(this.id, this.name, this.technology, this.date, this.problem,
+//      [this.mobile]);
 
   Map<String, dynamic> toMap() {
     var map = Map<String, dynamic>();
