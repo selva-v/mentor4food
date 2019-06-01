@@ -1,27 +1,60 @@
 import 'package:flutter/material.dart';
-import 'package:mentor4food/ui/shared/new_mentee.dart';
+import 'package:mentor4food/ui/shared/theme.dart';
+
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
+      theme: buildMentorTheme(1),
+      home: MyHomePage(),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  MyHomePage({Key key}) : super(key: key);
+
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Mentor Profile"),
       ),
-      home: new NewMentee(),
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              CircleAvatar(
+                backgroundImage: NetworkImage(
+                    'http://clipart-library.com/images/BTaroLj5c.png'),
+                radius: 70,
+              ),
+              Column(
+                children: <Widget>[
+                  Text("Name: Julian Sanders"),
+                  Text("Reputations: *******"),
+                  Text("Food Preference: *******"),
+                  Text("Date Available: *******"),
+                  Text("Technology: *******"),
+
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
